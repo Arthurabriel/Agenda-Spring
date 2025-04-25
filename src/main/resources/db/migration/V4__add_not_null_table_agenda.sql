@@ -1,0 +1,4 @@
+ALTER TABLE agenda
+ALTER COLUMN data_hora SET NOT NULL,
+ALTER COLUMN data_criacao SET NOT NULL,
+ALTER COLUMN paciente_id SET NOT NULL;
