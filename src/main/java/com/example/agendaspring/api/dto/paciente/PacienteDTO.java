@@ -1,7 +1,9 @@
 package com.example.agendaspring.api.dto.paciente;
 
+import com.example.agendaspring.domain.entity.Paciente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,14 +20,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PacienteDTO {
 
-    @JsonProperty("id")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JsonProperty("nome")
     @NotBlank
     private String nome;
+
+    @JsonProperty("sobrenome")
+    private String sobrenome;
 
     @JsonProperty("Endereco")
     private String endereco;

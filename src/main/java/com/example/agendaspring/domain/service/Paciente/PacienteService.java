@@ -16,7 +16,6 @@ public interface PacienteService {
 
     PacienteDTO get(Long id);
 
-
     void remove(Long id);
 
 }

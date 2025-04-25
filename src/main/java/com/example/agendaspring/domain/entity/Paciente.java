@@ -27,6 +27,10 @@ public class Paciente {
     @NotBlank
     private String nome;
 
+    @JsonProperty("sobrenome")
+    @Column(nullable = false)
+    private String sobrenome;
+
     @JsonProperty("Endereco")
     private String endereco;
 
@@ -40,6 +44,6 @@ public class Paciente {
             regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$",
             message = "CPF inválido. Use o formato XXX.XXX.XXX-XX"
     )
-    @Column(name = "cpf" , nullable = false)
+    @Column(name = "cpf" , nullable = false, unique = true)
     private String cpf;
 }

@@ -19,14 +19,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreatePacienteDTO {
 
-    @JsonProperty("id")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @JsonProperty("nome")
     @NotBlank
     private String nome;
+
+    @JsonProperty("sobrenome")
+    private String sobrenome;
 
     @JsonProperty("Endereco")
     private String endereco;
