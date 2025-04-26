@@ -6,13 +6,13 @@ import com.example.agendaspring.api.dto.paciente.UpdatePacienteDTO;
 import com.example.agendaspring.api.mapper.PacienteMapper;
 import com.example.agendaspring.domain.entity.Paciente;
 import com.example.agendaspring.domain.repository.PacienteRepository;
+import com.example.agendaspring.exception.CpfJaCadastradoException;
+import com.example.agendaspring.exception.PacienteNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +24,8 @@ public class PacienteServiceImpl implements PacienteService {
     private final PacienteMapper pacienteMapper;
 
     public PacienteDTO create(CreatePacienteDTO createPacienteDTO) {
-        if (pacienteRepository.existsByCpf(createPacienteDTO.getCpf())) {
-            throw new IllegalArgumentException();
+        if (pacienteRepository.existsByCpf(createPacienteDTO.cpf())) {
+            throw new CpfJaCadastradoException();
         }
         Paciente paciente = pacienteMapper.toPaciente(createPacienteDTO);
         pacienteRepository.save(paciente);
@@ -46,6 +46,7 @@ public class PacienteServiceImpl implements PacienteService {
 
     public PacienteDTO update(Long id, UpdatePacienteDTO updatePacienteDTO) {
         Paciente paciente = getPaciente(id);
+        paciente = pacienteMapper.updatePaciente(paciente, updatePacienteDTO);
         pacienteRepository.save(paciente);
         return pacienteMapper.toDTO(paciente);
     }
@@ -56,6 +57,6 @@ public class PacienteServiceImpl implements PacienteService {
 
     private Paciente getPaciente(Long id) {
         return pacienteRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Paciente não encontrado com o ID: " + id));
+                .orElseThrow(() -> new PacienteNotFoundException(id));
     }
 }
