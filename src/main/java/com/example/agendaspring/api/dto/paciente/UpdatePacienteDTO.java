@@ -17,6 +17,9 @@ public class UpdatePacienteDTO {
     @NotBlank
     private String nome;
 
+    @JsonProperty("sobrenome")
+    private String sobrenome;
+
     @JsonProperty("Endereco")
     private String endereco;
 

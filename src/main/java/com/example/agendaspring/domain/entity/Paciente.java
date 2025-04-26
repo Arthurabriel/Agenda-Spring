@@ -22,23 +22,18 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonProperty("nome")
     @Column(nullable = false)
     @NotBlank
     private String nome;
 
-    @JsonProperty("sobrenome")
     @Column(nullable = false)
     private String sobrenome;
 
-    @JsonProperty("Endereco")
     private String endereco;
 
-    @JsonProperty("email")
     @NotBlank
     private String email;
 
-    @JsonIgnore
     @NotBlank
     @Pattern(
             regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$",

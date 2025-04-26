@@ -36,7 +36,7 @@ public class PacienteDTO {
     @NotBlank
     private String email;
 
-    @JsonIgnore
+    @JsonProperty("cpf")
     @NotBlank
     @Pattern(
             regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$",
