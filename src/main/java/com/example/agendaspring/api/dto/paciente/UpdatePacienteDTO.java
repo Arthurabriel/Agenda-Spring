@@ -7,23 +7,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class UpdatePacienteDTO {
+public record UpdatePacienteDTO(
 
-    @JsonProperty("nome")
-    @NotBlank
-    private String nome;
+        @JsonProperty("nome")
+        @NotBlank(message = "Nome do paciente é obrigatório")
+        String nome,
 
-    @JsonProperty("sobrenome")
-    private String sobrenome;
+        @JsonProperty("sobrenome")
+        String sobrenome,
 
-    @JsonProperty("Endereco")
-    private String endereco;
+        @JsonProperty("Endereco")
+        String endereco,
 
-    @JsonProperty("email")
-    @NotBlank
-    private String email;
+        @JsonProperty("email")
+        @NotBlank(message = "Email do paciente é obrigatório")
+        String email
+) {
 }

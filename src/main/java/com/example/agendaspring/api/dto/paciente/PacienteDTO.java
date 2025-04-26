@@ -1,46 +1,26 @@
 package com.example.agendaspring.api.dto.paciente;
 
-import com.example.agendaspring.domain.entity.Paciente;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class PacienteDTO {
+public record PacienteDTO(
 
-    private Long id;
+        Long id,
 
-    @JsonProperty("nome")
-    @NotBlank
-    private String nome;
+        @JsonProperty("nome")
+        String nome,
 
-    @JsonProperty("sobrenome")
-    private String sobrenome;
+        @JsonProperty("sobrenome")
+        String sobrenome,
 
-    @JsonProperty("Endereco")
-    private String endereco;
+        @JsonProperty("Endereco")
+        String endereco,
 
-    @JsonProperty("email")
-    @NotBlank
-    private String email;
+        @JsonProperty("email")
+        String email,
 
-    @JsonProperty("cpf")
-    @NotBlank
-    @Pattern(
-            regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$",
-            message = "CPF inválido. Use o formato XXX.XXX.XXX-XX"
-    )
-    private String cpf;
+        @JsonProperty("cpf")
+        String cpf
+) {
 }

@@ -12,32 +12,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CreatePacienteDTO {
+public record CreatePacienteDTO(
 
-    @JsonProperty("nome")
-    @NotBlank
-    private String nome;
+        @JsonProperty("nome")
+        @NotBlank(message = "Nome do paciente é obrigatório")
+        String nome,
 
-    @JsonProperty("sobrenome")
-    private String sobrenome;
+        @JsonProperty("sobrenome")
+        String sobrenome,
 
-    @JsonProperty("Endereco")
-    private String endereco;
+        @JsonProperty("Endereco")
+        String endereco,
 
-    @JsonProperty("email")
-    @NotBlank
-    private String email;
+        @JsonProperty("email")
+        @NotBlank(message = "Email do paciente é obrigatório")
+        String email,
 
-    @JsonProperty("cpf")
-    @NotBlank
-    @Pattern(
-            regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}$",
-            message = "CPF inválido. Use o formato XXX.XXX.XXX-XX"
-    )
-    private String cpf;
+        @JsonProperty("cpf")
+        @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "CPF deve estar no formato XXX.XXX.XXX-XX")
+        String cpf
+) {
 }
