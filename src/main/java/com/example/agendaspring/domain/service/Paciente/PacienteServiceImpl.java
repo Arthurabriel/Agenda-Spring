@@ -55,7 +55,7 @@ public class PacienteServiceImpl implements PacienteService {
         pacienteRepository.deleteById(id);
     }
 
-    private Paciente getPaciente(Long id) {
+    public Paciente getPaciente(Long id) {
         return pacienteRepository.findById(id)
                 .orElseThrow(() -> new PacienteNotFoundException(id));
     }

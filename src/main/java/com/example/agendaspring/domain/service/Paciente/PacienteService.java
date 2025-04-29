@@ -3,6 +3,7 @@ package com.example.agendaspring.domain.service.Paciente;
 import com.example.agendaspring.api.dto.paciente.CreatePacienteDTO;
 import com.example.agendaspring.api.dto.paciente.PacienteDTO;
 import com.example.agendaspring.api.dto.paciente.UpdatePacienteDTO;
+import com.example.agendaspring.domain.entity.Paciente;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ public interface PacienteService {
     PacienteDTO get(Long id);
 
     void remove(Long id);
+
+    Paciente getPaciente(Long id);
 
 }
