@@ -1,10 +1,12 @@
 package com.example.agendaspring.api.controller;
 
 import com.example.agendaspring.api.dto.authentication.AuthenticationDTO;
+import com.example.agendaspring.api.dto.authentication.LoginResponseDTO;
 import com.example.agendaspring.api.dto.authentication.RegisterDTO;
 import com.example.agendaspring.api.mapper.UserMapper;
 import com.example.agendaspring.domain.entity.User;
 import com.example.agendaspring.domain.repository.UserRepository;
+import com.example.agendaspring.infra.security.TokenService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,20 +23,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    private UserRepository repository;
+    private final TokenService tokenService;
 
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository repository;
 
-    private UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
+
+    private final UserMapper userMapper;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authenticationDTO) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO authenticationDTO) {
          var userNamePassword = new UsernamePasswordAuthenticationToken(authenticationDTO.login(), authenticationDTO.password());
          var auth = this.authenticationManager.authenticate(userNamePassword);
 
-         return ResponseEntity.ok().build();
+         User user = (User) auth.getPrincipal();
+         var token = tokenService.generateToken(user);
+         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
