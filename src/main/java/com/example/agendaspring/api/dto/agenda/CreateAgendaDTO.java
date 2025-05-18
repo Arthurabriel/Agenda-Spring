@@ -11,7 +11,7 @@ public record CreateAgendaDTO(
         @NotNull
         @Future(message = "A data e hora da consulta deve ser no futuro")
         @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-        LocalDateTime data_consulta,
+        LocalDateTime dataConsulta,
 
         @NotNull
         Long paciente_id
