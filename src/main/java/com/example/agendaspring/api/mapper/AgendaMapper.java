@@ -20,6 +20,6 @@ public interface AgendaMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "paciente", source = "paciente")
-    @Mapping(target = "data_criacao", expression = "java(LocalDateTime.now())")
+    @Mapping(target = "dataCriacao", expression = "java(LocalDateTime.now())")
     Agenda toAgenda(CreateAgendaDTO agendaDTO, Paciente paciente);
 }

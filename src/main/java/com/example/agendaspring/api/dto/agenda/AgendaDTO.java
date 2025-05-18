@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 public record AgendaDTO(
         Long id,
         String descricao,
-        @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+        @DateTimeFormat(pattern = "dd/MM/yyyyTHH:mm:ss")
         LocalDateTime dataCriacao,
-        @DateTimeFormat(pattern = "dd/MM/yyyy HHmmss")
+        @DateTimeFormat(pattern = "dd/MM/yyyyTHHmmss")
         LocalDateTime dataConsulta,
         PacienteDTO paciente
 ) {

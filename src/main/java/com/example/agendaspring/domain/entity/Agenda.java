@@ -25,11 +25,11 @@ public class Agenda {
 
     @NotNull
     @Column(name = "data_criacao")
-    private LocalDateTime data_criacao;
+    private LocalDateTime dataCriacao;
 
     @NotNull
     @Column(name = "data_hora")
-    private LocalDateTime data_consulta;
+    private LocalDateTime dataConsulta;
 
     @NotNull
     @ManyToOne
