@@ -25,7 +25,7 @@ public class User implements UserDetails {
     private Long id;
 
     @NotBlank
-    @Column(name = "cpf" , nullable = false, unique = true)
+    @Column(name = "login" , nullable = false, unique = true)
     private String login;
 
     @NotBlank
